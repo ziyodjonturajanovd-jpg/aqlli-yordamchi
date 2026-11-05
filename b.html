@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Budilnik qo'yish</title>
+<style>
+  :root { --bg:#f6f7f9; --fg:#1b1f24; --muted:#5b6570; --accent:#2f6fde; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14171b; --fg:#eef1f4; --muted:#9aa4ae; --accent:#6b9cff; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:17px/1.5 -apple-system, system-ui, sans-serif; }
+  main { max-width:420px; margin:0 auto; padding:56px 16px; text-align:center; }
+  .t { font-size:56px; font-weight:700; letter-spacing:1px; margin:8px 0; }
+  a.btn { display:block; margin:28px 0 12px; padding:16px; border-radius:14px; background:var(--accent); color:#fff;
+          text-decoration:none; font-weight:600; }
+  p { color:var(--muted); font-size:15px; }
+</style>
+</head>
+<body>
+<main>
+  <div>⏰ Aqlli yordamchi</div>
+  <div class="t" id="t">--:--</div>
+  <div id="l"></div>
+  <a class="btn" id="go" href="#">Budilnikni qo'yish</a>
+  <p>Safari "Открыть в «Команды»?" deb so'rasa, "Открыть" ni bosing. iPhone'da "Budilnik" nomli buyruq (Команда) bo'lishi kerak.</p>
+</main>
+<script>
+  var q = new URLSearchParams(location.search);
+  var t = (q.get("t") || "").replace(/[^0-9:]/g, "").slice(0, 5);
+  var l = (q.get("l") || "").slice(0, 60);
+  document.getElementById("t").textContent = t || "--:--";
+  document.getElementById("l").textContent = l;
+  var url = "shortcuts://run-shortcut?name=" + encodeURIComponent("Budilnik") + "&input=text&text=" + encodeURIComponent(t);
+  var go = document.getElementById("go");
+  go.href = url;
+  if (/^\d{1,2}:\d{2}$/.test(t)) { setTimeout(function () { location.href = url; }, 300); }
+</script>
+</body>
+</html>
