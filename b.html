@@ -29,7 +29,7 @@
   var l = (q.get("l") || "").slice(0, 60);
   document.getElementById("t").textContent = t || "--:--";
   document.getElementById("l").textContent = l;
-  var url = "shortcuts://run-shortcut?name=" + encodeURIComponent("Budilnik") + "&input=text&text=" + encodeURIComponent(t);
+  var url = "shortcuts://run-shortcut?name=" + encodeURIComponent("Budilnik") + "&input=text&text=" + encodeURIComponent(t + "\n" + (l || "Aqlli yordamchi"));
   var go = document.getElementById("go");
   go.href = url;
   if (/^\d{1,2}:\d{2}$/.test(t)) { setTimeout(function () { location.href = url; }, 300); }
