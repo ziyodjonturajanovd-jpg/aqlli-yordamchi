@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="uz"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vazifalar</title>
+<style>body{font:16px -apple-system,system-ui,sans-serif;text-align:center;padding:40px 16px;color:#888;background:#fff}
+@media (prefers-color-scheme:dark){body{background:#17212b;color:#aab}}</style></head>
+<body><p id="m">Ochilmoqda…</p>
+<script>
+// Aqlli yordamchi Mini App: doimiy manzil. Joriy server manzili (tunnel) Telegram start_param orqali keladi,
+// sahifa Telegram ma'lumotlari (#tgWebAppData...) bilan birga o'sha serverga o'tkazadi. Bu yerda hech qanday ma'lumot yo'q.
+(function () {
+  var h = new URLSearchParams(location.hash.slice(1)), q = new URLSearchParams(location.search);
+  var sub = h.get("tgWebAppStartParam") || q.get("tgWebAppStartParam") || q.get("a") || "";
+  if (/^[a-z0-9-]{3,80}$/.test(sub)) {
+    location.replace("https://" + sub + ".trycloudflare.com/" + location.hash);
+  } else {
+    document.getElementById("m").textContent = "Server manzili topilmadi. Kanaldagi «📋 Vazifalar» tugmasi yoki botga /royxat orqali oching.";
+  }
+})();
+</script></body></html>
